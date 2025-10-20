@@ -1,0 +1,24 @@
+{
+  "name": "comp-4513---assignment-1",
+  "version": "1.0.0",
+  "description": "An F1 Data API for querying.",
+  "main": "f1-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RayPalima/COMP-4513---Assignment-1.git"
+  },
+  "author": "Raymond Palima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RayPalima/COMP-4513---Assignment-1/issues"
+  },
+  "homepage": "https://github.com/RayPalima/COMP-4513---Assignment-1#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.76.0",
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
