@@ -6,4 +6,4 @@ This assignment creates an F1 data API for querying. Some of the data includes: 
 ## Built with:
 NodeJS, Express, Render
 
-API Endpoints:
+## API Endpoints:
