@@ -7,6 +7,13 @@ const supaAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabase = supa.createClient(supaUrl, supaAnonKey);
 
+app.get("/f1/circuits", async (req, res) => {
+  const { data, error } = await supabase
+    .from("circuits")
+    .select()
+  res.send(data);
+});
+
 
 app.listen(8080, () => {
     console.log('listening on port 8080');
