@@ -95,17 +95,17 @@ const handleDrivers = (app) => {
     }
   });
 
-  // app.get("/api/drivers/race/:raceId", async (req, res) => {
-  //   const { data, error } = await supabase
-  //     .from("results")
-  //     .select("results")
-  //     .eq("raceId", req.params.raceId);
-  //   if (data.length > 0) {
-  //     res.send(data);
-  //   }else{
-  //     res.json(jsonMessage(`No drivers found with the raceId:${req.params.raceId}`));
-  //   }
-  // });
+  app.get("/api/drivers/race/:raceId", async (req, res) => {
+    const { data, error } = await supabase
+      .from("results")
+      .select("drivers(*), races (name), raceId")
+      .eq("raceId", req.params.raceId);
+    if (data.length > 0) {
+      res.send(data);
+    }else{
+      res.json(jsonMessage(`No drivers found with the raceId:${req.params.raceId}`));
+    }
+  });
 
 }
 
@@ -164,11 +164,17 @@ const handleRaces = (app) => {
   app.get("/api/races/circuits/:ref/season/:start/:end", async (req, res) => {
     const { data, error } = await supabase
       .from("races")
-      .select("raceId, round, name, date, year, url, circuits (name, location, country)")
+      .select("*, circuits!inner (name, location, country)")
       .eq("circuits.circuitRef", req.params.ref)
       .gte("year", req.params.start)
       .lte("year", req.params.end)
-    res.send(data);
+    if (req.params.start > req.params.end){
+      res.json(jsonMessage(`Invalid Range, end year is earlier than the start year.`));
+    }else if(data.length > 0){
+      res.send(data);
+    }else{
+      res.json(jsonMessage(`No Race found with the ref:${req.params.ref}, and in between ${req.params.start} to ${req.params.end}.`));
+    }
   });
 }
 
@@ -176,8 +182,8 @@ const handleResults = (app) => {
   app.get("/api/results/:raceId", async (req, res) => {
     const { data, error } = await supabase
       .from("results")
-      .select("resultId, number, grid, position, points, laps, time, drivers!inner (driverRef, code, forename, surname), races!inner (raceId, name, round, year, date), constructors!inner (name, constructorRef, nationality)")
-      .eq("races.raceId", req.params.raceId)
+      .select("*, drivers!inner (driverRef, code, forename, surname), races!inner (name, round, year, date), constructors!inner (name, constructorRef, nationality)")
+      .eq("raceId", req.params.raceId)
       .order("grid", { ascending: true });
     if (data.length > 0) {
       res.send(data);
@@ -185,14 +191,80 @@ const handleResults = (app) => {
       res.json(jsonMessage(`No Race found with the raceId:${req.params.raceId}.`));
     }
   });
+
+  app.get("/api/results/driver/:ref", async (req, res) => {
+    const { data, error } = await supabase
+      .from("results")
+      .select("*, drivers!inner (driverRef, forename, surname), races!inner (name, round, year, date), constructors!inner (name, constructorRef, nationality)")
+      .eq("drivers.driverRef", req.params.ref)
+    if (data.length > 0) {
+      res.send(data);
+    }else{
+      res.json(jsonMessage(`No race found with the driver ref:${req.params.ref}.`));
+    }
+  });
+
+  app.get("/api/results/drivers/:ref/seasons/:start/:end", async (req, res) => {
+  const { data, error } = await supabase
+    .from("results")
+    .select("*, drivers!inner (driverRef, forename, surname), races!inner (raceId, name, year, round), constructors!inner (name, constructorRef, nationality)")
+    .eq("drivers.driverRef", req.params.ref)
+    .gte("races.year", req.params.start)
+    .lte("races.year", req.params.end)
+    if (req.params.start > req.params.end){
+      res.json(jsonMessage(`Invalid Range, end year is earlier than the start year.`));
+    }else if(data.length > 0){
+      res.send(data);
+    }else{
+      res.json(jsonMessage(`No Race found with the driver ref:${req.params.ref}, and in between ${req.params.start} to ${req.params.end}.`));
+    }
+  });
 }
 
 const handleQualifying = (app) => {
-
+  app.get("/api/qualifying/:raceId", async (req, res) => {
+    const { data, error } = await supabase
+      .from("qualifying")
+      .select("*, drivers!inner (driverRef, code, forename, surname), races!inner (name, round, year, date), constructors!inner (name, constructorRef, nationality)")
+      .eq("raceId", req.params.raceId)
+      .order("position", { ascending: true });
+    if (data.length > 0) {
+      res.send(data);
+    }else{
+      res.json(jsonMessage(`No race found with the raceId:${req.params.raceId}.`));
+    }
+});
 }
 
 const handleStandings = (app) => {{
+  app.get("/api/standings/drivers/:raceId", async (req, res) => {
+    const { data, error } = await supabase
+      .from("driverStandings")
+      .select("*, drivers!inner (driverRef, code, forename, surname)")
+      .eq("raceId", req.params.raceId)
+      .order("position", { ascending: true });
+    if (data.length > 0) {
+      res.send(data);
+    }else{
+      res.json(jsonMessage(`No race found with the raceId:${req.params.raceId}.`));
+    }
+  });
 
+  app.get("/api/standings/constructors/:raceId", async (req, res) => {
+    const { data, error } = await supabase
+      .from("constructorStandings")
+      .select("*,  constructors!inner (name, constructorRef, nationality)")
+      .eq("raceId", req.params.raceId)
+      .order("position", { ascending: true });
+    if (error){
+      res.json(jsonMessage(`Gave letters instead of numbers for raceId:${req.params.raceId}.`));
+    }
+    else if (data.length > 0) {
+      res.send(data);
+    }else{
+      res.json(jsonMessage(`No race found with the raceId:${req.params.raceId}.`));
+    }
+  });
 }}
 
 module.exports = {
