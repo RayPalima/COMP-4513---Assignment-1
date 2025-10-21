@@ -1,14 +1,22 @@
+/** 
+ * The following is a router that handles the routes and returns the appropriate data in JSON.
+*/
+
+//Making sure to use/"require" express and .env file.
 const supa = require('@supabase/supabase-js');
 require('dotenv').config();
 
+//Initializing connection Supabase database (including Url & Key).
 const supaUrl = process.env.SUPABASE_URL || 'https://gxrnaymgawdvwwgqzzty.supabase.co';
 const supaAnonKey = process.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4cm5heW1nYXdkdnd3Z3F6enR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4NzYyMDMsImV4cCI6MjA3NjQ1MjIwM30.vsiIduM81WnULdpLZbYBQtvSpeAQ16DQ6djGvkfdUNU';
 const supabase = supa.createClient(supaUrl, supaAnonKey);
 
+//Handles the proper formating of error message in JSON.
 const jsonMessage = (msg) => {
     return { error : msg };
 };
 
+//Handles all the routes that start with "circuits" (most of it goes through circuits table). Returns data on all circuits, and a specific circuit based on circuitRef and year. 
 const handleCircuits = (app) => {
   app.get("/api/circuits", async (req, res) => {
   const { data, error } = await supabase
@@ -42,6 +50,7 @@ const handleCircuits = (app) => {
   });
 }
 
+//Handles all the routes that start with "constructors" (all of it goes through the constructors table). Returns data on all constructors, and a specific constructor based on constructorRef. 
 const handleConstructors = (app) => {
   app.get("/api/constructors", async (req, res) => {
     const { data, error } = await supabase
@@ -63,6 +72,7 @@ const handleConstructors = (app) => {
   });
 }
 
+//Handles all the routes that start with "drivers" (most of it goes through drivers table). Returns data on all drivers, specific drivers from driverRef and raceId, and searches for drivers as well.
 const handleDrivers = (app) => {
   app.get("/api/drivers", async (req, res) => {
     const { data, error } = await supabase
@@ -71,6 +81,7 @@ const handleDrivers = (app) => {
     res.send(data);
   });
 
+  //Note: I made the following Case insensitive.
   app.get("/api/drivers/:ref", async (req, res) => {
     const { data, error } = await supabase
       .from("drivers")
@@ -109,6 +120,7 @@ const handleDrivers = (app) => {
 
 }
 
+//Handles all the routes that start with "races" (most of it goes through races table). Returns data on races. This includes specific races from raceId, year, year and round, and circuitRef (with year start and end parameters as well).
 const handleRaces = (app) => {
   app.get("/api/races/:raceId", async (req, res) => {
     const { data, error } = await supabase
@@ -178,6 +190,7 @@ const handleRaces = (app) => {
   });
 }
 
+//Handles all the routes that start with "results" (all of it goes through Results table). Returns data on race results. This includes specific races from raceId, and driverRef (with year start and end parameters).
 const handleResults = (app) => {
   app.get("/api/results/:raceId", async (req, res) => {
     const { data, error } = await supabase
@@ -221,6 +234,7 @@ const handleResults = (app) => {
   });
 }
 
+//Handles all the routes that start with "qualifying" (all of it goes through qualifying table). Returns data on qualifying using raceId.
 const handleQualifying = (app) => {
   app.get("/api/qualifying/:raceId", async (req, res) => {
     const { data, error } = await supabase
@@ -236,6 +250,7 @@ const handleQualifying = (app) => {
 });
 }
 
+//Handles all the routes that start with "standings" (all of it goes through driver or constructors standing table). Returns standing's data for both drivers and constructors based on the raceId.
 const handleStandings = (app) => {{
   app.get("/api/standings/drivers/:raceId", async (req, res) => {
     const { data, error } = await supabase
@@ -267,6 +282,7 @@ const handleStandings = (app) => {{
   });
 }}
 
+//Exports the module.
 module.exports = {
   handleCircuits,
   handleConstructors,
