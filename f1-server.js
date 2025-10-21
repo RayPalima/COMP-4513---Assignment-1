@@ -1,20 +1,20 @@
 const express = require('express');
-const supa = require('@supabase/supabase-js');
+const path = require('path');
+require('dotenv').config();
+
 const app = express();
 
-const supaUrl = 'https://gxrnaymgawdvwwgqzzty.supabase.co';
-const supaAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4cm5heW1nYXdkdnd3Z3F6enR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4NzYyMDMsImV4cCI6MjA3NjQ1MjIwM30.vsiIduM81WnULdpLZbYBQtvSpeAQ16DQ6djGvkfdUNU';
+const router = require('./scripts/f1-router');
 
-const supabase = supa.createClient(supaUrl, supaAnonKey);
+router.handleCircuits(app);
+router.handleConstructors(app);
+router.handleDrivers(app);
+router.handleQualifying(app);
+router.handleRaces(app);
+router.handleResults(app);
+router.handleStandings(app);
 
-app.get("/f1/circuits", async (req, res) => {
-  const { data, error } = await supabase
-    .from("circuits")
-    .select()
-  res.send(data);
-});
-
-
-app.listen(8080, () => {
-    console.log('listening on port 8080');
+const port = process.env.PORT;
+app.listen(port, () => {
+    console.log("F1 Server running at port= " + port);
 });
