@@ -68,17 +68,12 @@ NodeJS, Express, Render - https://comp-4513-f1-api-assignment-1.onrender.com
 | f1-router.js (in scripts folder) | Handles the routes and returns the appropriate data in JSON.|
 
 ## Test Links:
-https://comp-4513-f1-api-assignment-1.onrender.com/api/circuits
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/circuits/monza
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/circuits/calgary
-
-
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/constructors
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/constructors/ferrari
+https://comp-4513-f1-api-assignment-1.onrender.com/api/circuits <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/circuits/monza <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/circuits/calgary <br>
+<br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/constructors <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/constructors/ferrari <br>
 
 
 
