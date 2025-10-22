@@ -74,62 +74,36 @@ https://comp-4513-f1-api-assignment-1.onrender.com/api/circuits/calgary <br>
 <br>
 https://comp-4513-f1-api-assignment-1.onrender.com/api/constructors <br>
 https://comp-4513-f1-api-assignment-1.onrender.com/api/constructors/ferrari <br>
+<br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers<br>
+Note: Made the driverRef (the following test link), Case **Insensitive**. <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/Norris <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/norris <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/connolly <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/search/sch <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/search/xxxxx <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/race/1069 <br>
+<br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/1034 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/2021 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/1800 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/2020/5 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/2020/100 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/7 <br>
+Note: the original test links given (previous one included) had a circuitRef that was a number. However, circuitRef is a string, so I created new test cases. <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/monza <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/monza/season/2015/2022 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/monza/season/2022/2022 <br>
+<br>
 
-
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers
-
-Note: Made the driverRef (the following test link), Case **Insensitive**.
-https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/Norris
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/norris
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/connolly
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/search/sch
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/search/xxxxx
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/drivers/race/1069
-
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/1034
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/2021
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/1800
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/2020/5
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/season/2020/100
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/7
-
-Note: the original test links given (previous one included) had a circuitRef that was a number. However, circuitRef is a string, so I created new test cases.
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/monza
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/monza/season/2015/2022
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/races/circuits/monza/season/2022/2022
-
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/results/1106
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/results/driver/max_verstappen
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/results/driver/connolly
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/results/drivers/sainz/seasons/2021/2022
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/results/drivers/sainz/seasons/2035/2022
-
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/qualifying/1106
-
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/standings/drivers/1120
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/standings/constructors/1120
-
-https://comp-4513-f1-api-assignment-1.onrender.com/api/standings/constructors/asds
+https://comp-4513-f1-api-assignment-1.onrender.com/api/results/1106 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/results/driver/max_verstappen <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/results/driver/connolly <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/results/drivers/sainz/seasons/2021/2022 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/results/drivers/sainz/seasons/2035/2022 <br>
+<br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/qualifying/1106 <br>
+<br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/standings/drivers/1120 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/standings/constructors/1120 <br>
+https://comp-4513-f1-api-assignment-1.onrender.com/api/standings/constructors/asds 
